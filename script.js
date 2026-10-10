@@ -3,7 +3,7 @@
   'use strict';
 
   // Новое имя хранилища: старый тестовый баланс и инвентарь не загрузятся.
-  const STORAGE_KEY = 'arizonaUpgraderFair_v3_empty_start';
+  const STORAGE_KEY = 'UpgraderFair_v3_empty_start';
   const $ = (id) => document.getElementById(id);
 
   const CATEGORIES = {
@@ -497,7 +497,7 @@
     modalList.innerHTML = '';
 
     if (!state.inventory.length) {
-      modalList.innerHTML = '<div class="empty-state"><span>🎒</span><b>Инвентарь пуст</b><small>Выиграй предмет, чтобы поставить его.</small></div>';
+      modalList.innerHTML = '<div class="empty-state"><span>🎃</span><b>Инвентарь пуст</b><small>Выиграй предмет, чтобы поставить его.</small></div>';
     } else {
       state.inventory.forEach((item) => makeModalItem(
         item,
@@ -663,7 +663,7 @@
       `roll-card ${outcomeIsWin ? 'roll-win' : 'roll-loss'}${isFinal ? ' roll-final' : ''}`;
 
     element.innerHTML = `
-      <div class="roll-card-icon">${outcomeIsWin ? '✓' : '×'}</div>
+      <div class="roll-card-icon">${outcomeIsWin ? '🎃' : '💀'}</div>
       <div class="roll-card-text">${outcomeIsWin ? 'ПОБЕДА' : 'ПОРАЖЕНИЕ'}</div>
     `;
 
