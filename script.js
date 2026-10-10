@@ -14,7 +14,7 @@
   };
 
   const DEFAULT_CATALOG = [
-    { id: 'Mersedes', type: 'vehicle', name: 'Mersedes-Benz Sprinter', value: 4500000, icon: 'images/Mersedes-Benz Sprinter.png' },
+    { id: 'Mersedes', type: 'vehicle', name: 'Mersedes-Benz Sprinter', value: 4500000, icon: 'images/Mersedes-Benz-Sprinter.png' },
     { id: 'e63', type: 'vehicle', name: 'Mercedes-Benz E63', value: 3500000, icon: '🚘' },
     { id: 'supra', type: 'vehicle', name: 'Toyota Supra', value: 4500000, icon: '🏎️' },
     { id: 'gtr', type: 'vehicle', name: 'Nissan GT-R', value: 5500000, icon: '🏎️' },
