@@ -6,23 +6,23 @@
   const $ = (id) => document.getElementById(id);
 
   const CATEGORIES = {
-    vehicle: { label: 'МАШИНА', short: 'АВТО', plural: 'Машины' },
-    resource: { label: 'РЕСУРС', short: 'DROP', plural: 'Ресурсы' },
-    business: { label: 'БИЗНЕС', short: 'BIZ', plural: 'Бизнесы' },
-    accessory: { label: 'АКСЕССУАР', short: 'ITEM', plural: 'Аксессуары' }
+    vehicle: { label: 'МАШИНА🎃', short: 'АВТО🎃', plural: 'Машины🎃' },
+    resource: { label: 'РЕСУРС⛏️', short: 'DROP⛏️', plural: 'Ресурсы⛏️' },
+    business: { label: 'БИЗНЕС🕸️', short: 'BIZ🕸️', plural: 'Бизнесы🕸️' },
+    accessory: { label: 'АКСЕССУАР🍁', short: 'ITEM🍁', plural: 'Аксессуары🍁' }
   };
 
   const DEFAULT_CATALOG = [
-    { id: 'm5', type: 'vehicle', name: 'BMW M5', value: 2500000, icon: '🚗' },
-    { id: 'e63', type: 'vehicle', name: 'Mercedes-Benz E63', value: 3500000, icon: '🚘' },
-    { id: 'supra', type: 'vehicle', name: 'Toyota Supra', value: 4500000, icon: '🏎️' },
-    { id: 'gtr', type: 'vehicle', name: 'Nissan GT-R', value: 5500000, icon: '🏎️' },
-    { id: 'x6', type: 'vehicle', name: 'BMW X6', value: 7000000, icon: '🚙' },
-    { id: 'g63', type: 'vehicle', name: 'Mercedes G63', value: 10000000, icon: '🚙' },
-    { id: 'lambo', type: 'vehicle', name: 'Lamborghini', value: 18000000, icon: '🏎️' },
-    { id: 'rolls', type: 'vehicle', name: 'Rolls-Royce', value: 30000000, icon: '🚘' },
+    { id: 'm5', type: 'vehicle', name: 'BMW M5 F90', value: 2500000, icon: '🚗' },
+    { id: 'e63', type: 'vehicle', name: 'BMW i12', value: 3500000, icon: '🚘' },
+    { id: 'supra', type: 'vehicle', name: 'BMW M5 E60', value: 4500000, icon: '🏎️' },
+    { id: 'gtr', type: 'vehicle', name: 'BMW M5 F10', value: 5500000, icon: '🏎️' },
+    { id: 'x6', type: 'vehicle', name: 'Mersedes AMG W205', value: 7000000, icon: '🚙' },
+    { id: 'g63', type: 'vehicle', name: 'Mercedes E63 W212', value: 10000000, icon: '🚙' },
+    { id: 'lambo', type: 'vehicle', name: 'Mersedes-Benz G63 W464', value: 18000000, icon: '🏎️' },
+    { id: 'rolls', type: 'vehicle', name: 'Mersedes-Benz Sprinter', value: 30000000, icon: '🚘' },
 
-    { id: 'phone', type: 'resource', name: 'Премиум телефон', value: 150000, icon: '📱' },
+    { id: 's650', type: 'vehicle', name: 'Mersedes-Benz S650', value: 150000, icon: '🏎️' },
     { id: 'case', type: 'resource', name: 'Премиум кейс', value: 2500000, icon: '📦' },
     { id: 'gold-resource', type: 'resource', name: 'Золотой ресурс', value: 5000000, icon: '🏆' },
     { id: 'rare-resource', type: 'resource', name: 'Редкий ресурс', value: 10000000, icon: '💎' },
