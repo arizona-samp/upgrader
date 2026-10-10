@@ -20,7 +20,7 @@
     { id: 'x6', type: 'vehicle', name: 'Mersedes AMG W205', value: 7000000, icon: '🚙' },
     { id: 'g63', type: 'vehicle', name: 'Mercedes E63 W212', value: 10000000, icon: '🚙' },
     { id: 'lambo', type: 'vehicle', name: 'Mersedes-Benz G63 W464', value: 18000000, icon: '🏎️' },
-    { id: 'rolls', type: 'vehicle', name: 'Mersedes-Benz Sprinter', value: 30000000, icon: '🚘' },
+    { id: 'rolls', type: 'vehicle', name: 'Mersedes-Benz Sprinter', value: 4500000, icon: '🚘' },
 
     { id: 's650', type: 'vehicle', name: 'Mersedes-Benz S650', value: 150000, icon: '🏎️' },
     { id: 'case', type: 'resource', name: 'Премиум кейс', value: 2500000, icon: '📦' },
