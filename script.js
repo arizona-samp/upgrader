@@ -13,13 +13,6 @@
     accessory: { label: 'АКСЕССУАР🎃', short: 'ITEM🎃', plural: 'Аксессуары🎃' }
 
    const DEFAULT_CATALOG = [
-    {
-  id: 'g63',
-  type: 'vehicle',
-  name: 'Mercedes G63',
-  value: 10000000,
-  icon: 'images/Mercedes-G63.png'
-},
     { id: 'e63', type: 'vehicle', name: 'Mercedes-Benz E63', value: 3500000, icon: '🚘' },
     { id: 'e63', type: 'vehicle', name: 'Mercedes-Benz E63', value: 3500000, icon: '🚘' },
     { id: 'supra', type: 'vehicle', name: 'Toyota Supra', value: 4500000, icon: '🏎️' },
