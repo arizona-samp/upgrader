@@ -1,1 +1,246 @@
 
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0d">
+  <title>UPGRADER — Halloween Event</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#">
+    <span class="brand-icon">U<span>✦</span></span>
+    <span>UPGRADER<small>HALLOWEEN EVENT</small></span>
+  </a>
+
+  <div class="header-actions">
+    <div class="balance-box">
+      <span class="ruble">₽</span>
+      <div><small>ВАШ БАЛАНС</small><b id="balanceValue">4 000 000</b></div>
+    </div>
+    <button class="btn btn-primary" id="depositButton">＋ Пополнить</button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="event-bar">
+    <span class="status-dot"></span>
+    HALLOWEEN EVENT
+    <span class="event-line"></span>
+    <span class="event-subtitle">ТВОЙ СЛЕДУЮЩИЙ ДРОП</span>
+    <span class="pumpkin">♧</span>
+  </div>
+
+  <section class="game-grid">
+    <article class="panel stake-panel">
+      <div class="panel-heading">
+        <div><small>01 / SOURCE</small><h2>Ваша ставка</h2></div>
+        <span class="state-tag">ГОТОВО</span>
+      </div>
+
+      <label for="stakeAmount">Сумма ставки</label>
+      <div class="money-input">
+        <span>₽</span>
+        <input id="stakeAmount" type="number" min="1" step="1" value="1000000">
+        <button id="maxStake" type="button">MAX</button>
+      </div>
+      <p class="hint">Укажи сумму, которую хочешь поставить.</p>
+
+      <div class="preview-card">
+        <div class="preview-image cash-image" id="sourceImage">₽</div>
+        <div class="preview-info">
+          <small>ВАША СТАВКА</small>
+          <h3>Игровой баланс</h3>
+          <b id="sourcePrice">₽ 1 000 000</b>
+        </div>
+        <div class="preview-footer"><span>ИСТОЧНИК</span><b>НАЛИЧНЫЕ</b></div>
+      </div>
+
+      <div class="note"><span>✓</span> При проигрыше ставка снимается с баланса.</div>
+    </article>
+
+    <article class="panel roll-panel">
+      <div class="panel-heading">
+        <div><small>02 / CHANCE</small><h2>Прокрутка</h2></div>
+        <span class="live-tag"><i></i> LIVE</span>
+      </div>
+
+      <div class="chance-wrap">
+        <div class="chance-circle" id="chanceCircle">
+          <div><b id="chanceValue">25.00%</b><small>ШАНС ПОБЕДЫ</small></div>
+        </div>
+      </div>
+
+      <div class="mode-tabs">
+        <button type="button" class="mode-tab active" data-mode="cash">Наличка → наличка</button>
+        <button type="button" class="mode-tab" data-mode="item">Наличка → предмет</button>
+      </div>
+
+      <div id="cashTargetControls">
+        <label for="cashTargetAmount">Желаемый выигрыш</label>
+        <div class="money-input target-money-input">
+          <span>₽</span>
+          <input id="cashTargetAmount" type="number" min="1" step="1" value="4000000">
+        </div>
+        <p class="hint">Чем выше выигрыш относительно ставки, тем ниже шанс.</p>
+      </div>
+
+      <div id="itemTargetControls" class="hidden">
+        <div class="chosen-target">
+          <span>ВЫБРАННЫЙ ПРЕДМЕТ</span>
+          <b id="chosenTargetName">Выбери предмет в магазине</b>
+          <strong id="chosenTargetPrice">—</strong>
+        </div>
+        <button class="btn btn-secondary full-width" id="goToShop" type="button">Открыть магазин ↓</button>
+      </div>
+
+      <div class="reel-wrap" id="reelWrap">
+        <div class="reel-pointer"></div>
+        <div class="reel-track" id="reelTrack"></div>
+        <div class="reel-fade left"></div>
+        <div class="reel-fade right"></div>
+      </div>
+
+      <div class="chance-summary">
+        <span>РАССЧИТАННЫЙ ШАНС</span>
+        <b id="chanceCaption">25.00%</b>
+      </div>
+      <button class="btn btn-upgrade" id="upgradeButton"><span>↻</span> ПРОКРУТИТЬ <b>→</b></button>
+      <p class="fair-note">Шанс отображается до запуска и не меняется во время прокрутки.</p>
+    </article>
+
+    <article class="panel target-panel">
+      <div class="panel-heading">
+        <div><small>03 / TARGET</small><h2>Цель апгрейда</h2></div>
+        <span class="multiplier" id="multiplier">×4.00</span>
+      </div>
+
+      <div class="preview-card target-preview">
+        <div class="preview-image target-placeholder" id="targetImage">✦</div>
+        <div class="preview-info">
+          <small id="targetCategory">ЖЕЛАЕМЫЙ ПРИЗ</small>
+          <h3 id="targetName">Наличные</h3>
+          <b id="targetPrice">₽ 4 000 000</b>
+          <p id="targetDetails">Выигрыш на баланс</p>
+        </div>
+        <div class="preview-footer"><span>ПРИ УСПЕХЕ</span><b id="targetFooterPrice">₽ 4 000 000</b></div>
+      </div>
+
+      <div class="target-math">
+        <div><span>Ставка</span><b id="mathStake">₽ 1 000 000</b></div>
+        <div><span>Множитель</span><b id="mathMultiplier">×4.00</b></div>
+        <div><span>Шанс</span><b id="mathChance">25.00%</b></div>
+      </div>
+      <div class="note"><span>✦</span> Выбирай желаемый выигрыш, а шанс рассчитается автоматически.</div>
+    </article>
+  </section>
+
+  <section class="lower-grid">
+    <section class="panel inventory-panel">
+      <div class="section-heading">
+        <div><small>YOUR COLLECTION</small><h2>Инвентарь <span class="count" id="inventoryCount">0</span></h2></div>
+        <input id="inventorySearch" class="search" type="search" placeholder="Поиск...">
+      </div>
+      <div class="item-grid" id="inventoryGrid"></div>
+      <div class="empty-state" id="inventoryEmpty">Инвентарь пока пуст.</div>
+    </section>
+
+    <section class="panel shop-panel" id="shopSection">
+      <div class="section-heading">
+        <div><small>PRIZE CATALOG</small><h2>Магазин <span class="count" id="catalogCount">0</span></h2></div>
+        <button class="btn btn-secondary" id="addItemButton" type="button">＋ Добавить товар</button>
+      </div>
+
+      <div class="shop-tools">
+        <div class="filters" id="categoryFilters">
+          <button class="filter-chip active" data-category="all">Все</button>
+          <button class="filter-chip" data-category="vehicle">Машины</button>
+          <button class="filter-chip" data-category="accessory">Аксессуары</button>
+          <button class="filter-chip" data-category="resource">Ресурсы</button>
+          <button class="filter-chip" data-category="property">Недвижимость</button>
+          <button class="filter-chip" data-category="business">Бизнесы</button>
+        </div>
+        <input id="shopSearch" class="search" type="search" placeholder="Поиск товаров...">
+      </div>
+
+      <div class="item-grid shop-grid" id="shopGrid"></div>
+      <div class="empty-state hidden" id="shopEmpty">Нет товаров в этой категории.</div>
+      <p class="catalog-note">Цены и фото редактируются. Данные сохраняются в этом браузере.</p>
+    </section>
+  </section>
+
+  <footer><b>UPGRADER</b><span>Halloween Event · локальный игровой симулятор</span></footer>
+</main>
+
+<div class="modal-backdrop" id="depositModal" aria-hidden="true">
+  <section class="modal" role="dialog" aria-modal="true">
+    <button class="close-modal" data-close="depositModal">×</button>
+    <small class="modal-kicker">BALANCE CONTROL</small>
+    <h2>Пополнение баланса</h2>
+    <p>Укажи, сколько игровых денег добавить.</p>
+    <label for="depositAmount">Сумма пополнения</label>
+    <div class="money-input"><span>₽</span><input id="depositAmount" type="number" min="1" step="1" placeholder="Например, 10000000"></div>
+    <div class="quick-amounts">
+      <button data-amount="1000000">+1 млн</button>
+      <button data-amount="5000000">+5 млн</button>
+      <button data-amount="10000000">+10 млн</button>
+      <button data-amount="50000000">+50 млн</button>
+    </div>
+    <button class="btn btn-primary modal-main" id="confirmDeposit">Зачислить</button>
+    <p class="modal-footnote">Виртуальная валюта, без реальных платежей.</p>
+  </section>
+</div>
+
+<div class="modal-backdrop" id="productModal" aria-hidden="true">
+  <section class="modal product-modal" role="dialog" aria-modal="true">
+    <button class="close-modal" data-close="productModal">×</button>
+    <small class="modal-kicker">PRIZE CATALOG</small>
+    <h2 id="productModalTitle">Добавить товар</h2>
+    <form id="productForm">
+      <input type="hidden" id="productId">
+      <label for="productName">Название</label>
+      <input class="field" id="productName" maxlength="70" required placeholder="Название приза">
+      <label for="productCategory">Категория</label>
+      <select class="field" id="productCategory">
+        <option value="vehicle">Машины</option>
+        <option value="accessory">Аксессуары</option>
+        <option value="resource">Ресурсы</option>
+        <option value="property">Недвижимость</option>
+        <option value="business">Бизнесы</option>
+      </select>
+      <label for="productPrice">Стоимость (₽)</label>
+      <input class="field" id="productPrice" type="number" min="1" step="1" required>
+      <label for="productImage">Ссылка на фото</label>
+      <input class="field" id="productImage" type="url" placeholder="https://...">
+      <label for="productDescription">Описание (необязательно)</label>
+      <input class="field" id="productDescription" maxlength="100" placeholder="Описание товара">
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" data-close="productModal">Отмена</button>
+        <button type="submit" class="btn btn-primary">Сохранить товар</button>
+      </div>
+    </form>
+  </section>
+</div>
+
+<div class="modal-backdrop" id="resultModal" aria-hidden="true">
+  <section class="modal result-modal" role="dialog" aria-modal="true">
+    <button class="close-modal" data-close="resultModal">×</button>
+    <div class="result-icon" id="resultIcon">✦</div>
+    <small class="modal-kicker" id="resultKicker">UPGRADE RESULT</small>
+    <h2 id="resultTitle">Победа!</h2>
+    <p id="resultDescription"></p>
+    <div class="result-prize"><img id="resultImage" alt=""><div><b id="resultName"></b><strong id="resultPrice"></strong></div></div>
+    <button class="btn btn-primary modal-main" data-close="resultModal">Продолжить</button>
+  </section>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
+
