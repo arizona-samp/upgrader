@@ -7,10 +7,10 @@
   const $ = (id) => document.getElementById(id);
 
   const CATEGORIES = {
-    vehicle: { label: 'МАШИНА', short: 'АВТО', plural: 'Машины' },
-    resource: { label: 'РЕСУРС', short: 'DROP', plural: 'Ресурсы' },
-    business: { label: 'БИЗНЕС', short: 'BIZ', plural: 'Бизнесы' },
-    accessory: { label: 'АКСЕССУАР', short: 'ITEM', plural: 'Аксессуары' }
+    vehicle: { label: 'МАШИНА🚗', short: 'АВТО🚗', plural: 'Машины🚗' },
+    resource: { label: 'РЕСУРС⛏️', short: 'DROP⛏️', plural: 'Ресурсы⛏️' },
+    business: { label: 'БИЗНЕС🤑', short: 'BIZ🤑', plural: 'Бизнесы🤑' },
+    accessory: { label: 'АКСЕССУАР🎃', short: 'ITEM🎃', plural: 'Аксессуары🎃' }
   };
 
   const DEFAULT_CATALOG = [
