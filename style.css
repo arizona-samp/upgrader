@@ -1,1 +1,319 @@
 
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#08090d;--panel:#11131a;--panel2:#161922;--border:rgba(255,255,255,.07);--orange:#ff6b25;--orange2:#ff9b57;--text:#fff;--muted:#777c87;--green:#39df86;--red:#ff5252}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:#08090d;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.4;cursor:not-allowed}
+.hidden{display:none!important}
+.background{position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 50% 20%,rgba(255,90,0,.12),transparent 35%),radial-gradient(circle at 10% 90%,rgba(255,30,0,.08),transparent 30%),#08090d}
+.background::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1px);background-size:4px 4px;opacity:.25}
+
+/* Верхняя панель */
+.header{width:100%;height:78px;padding:0 45px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(8,9,13,.8);backdrop-filter:blur(15px)}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:25px;background:#171921;border:1px solid rgba(255,120,0,.3);border-radius:12px;box-shadow:0 0 18px rgba(255,80,0,.08)}
+.logo-title{font-size:17px;font-weight:900;letter-spacing:2px}
+.logo-subtitle{margin-top:2px;color:#ff681c;font-size:10px;font-weight:800;letter-spacing:3px}
+.header-right{display:flex;align-items:center;gap:10px}
+.account-actions{display:flex;align-items:center;gap:8px}
+.account-button{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:10px;padding:10px 14px;min-width:152px;cursor:pointer;text-align:left;transition:.2s}
+.account-button:hover{border-color:rgba(255,100,25,.45);background:rgba(255,90,20,.06);transform:translateY(-1px)}
+.account-button-title{display:block;color:#ff6b25;font-size:9px;font-weight:950;letter-spacing:1px}
+.account-button-value{display:block;margin-top:4px;color:#777c87;font-size:9px;font-weight:800}
+.account-button-value strong{color:#fff}
+.online{display:flex;align-items:center;gap:8px;padding:10px 15px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:10px;font-size:11px;font-weight:800;color:#8d929d}
+.online strong{color:#fff}
+.online-dot{width:7px;height:7px;border-radius:50%;background:#44d66b;box-shadow:0 0 10px #44d66b}
+
+/* Основной блок */
+.container{width:min(1150px,calc(100% - 35px));margin:0 auto;padding:55px 0 40px}
+.title-block{text-align:center;margin-bottom:30px}
+.title-block h1{font-size:42px;font-weight:950;letter-spacing:5px;text-shadow:0 0 30px rgba(255,70,0,.2)}
+.title-block p{margin-top:8px;color:#777c87;font-size:13px}
+
+/* Тип ставки */
+.type-selector{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:680px;margin:0 auto 25px}
+.type{min-height:68px;display:flex;align-items:center;gap:11px;padding:10px 13px;cursor:pointer;border:1px solid rgba(255,255,255,.07);border-radius:12px;color:#fff;background:#11131a;transition:.2s}
+.type:hover{transform:translateY(-2px);border-color:rgba(255,95,25,.3)}
+.type.active{background:linear-gradient(145deg,rgba(255,80,15,.14),rgba(255,255,255,.025));border-color:rgba(255,90,20,.55);box-shadow:0 0 25px rgba(255,70,0,.08)}
+.type-icon{width:38px;height:38px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#191b23;border-radius:9px;font-size:19px}
+.type span:last-child{display:flex;flex-direction:column;text-align:left;font-size:12px;font-weight:800}
+.type small{margin-bottom:4px;color:#666b76;font-size:8px;letter-spacing:1px}
+
+/* Поле апгрейда */
+.upgrader{display:grid;grid-template-columns:1fr 170px 1fr;gap:18px;align-items:center;padding:25px;background:rgba(17,19,26,.85);border:1px solid rgba(255,255,255,.07);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.upgrade-side{min-width:0}
+.side-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;color:#777c87;font-size:9px;font-weight:900;letter-spacing:1.5px}
+.change-btn{padding:5px 8px;border:0;background:transparent;color:#ff6b25;font-size:8px;font-weight:900;cursor:pointer}
+.selected-card{min-height:95px;display:flex;align-items:center;padding:16px;cursor:pointer;background:#161922;border:1px solid rgba(255,255,255,.07);border-radius:13px;transition:.2s}
+.selected-card:hover{border-color:rgba(255,100,25,.35)}
+.selected-icon{width:57px;height:57px;flex:0 0 57px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#20232d;border-radius:12px;font-size:28px}
+.selected-info{min-width:0;margin-left:13px}
+.selected-name{color:#fff;font-size:13px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.selected-price{margin-top:7px;color:#ff702a;font-size:12px;font-weight:800}
+.arrow{margin-left:auto;padding-left:8px;color:#575d69;font-size:26px}
+
+/* Шансы */
+.chance-selector{margin-top:12px}
+.chance-selector-title{margin-bottom:8px;color:#777c87;font-size:9px;font-weight:900;letter-spacing:1.5px}
+.chance-buttons{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.chance-btn{height:34px;border:1px solid rgba(255,255,255,.07);border-radius:8px;background:#11131a;color:#858b96;cursor:pointer;font-size:10px;font-weight:900;transition:.2s}
+.chance-btn:hover:not(:disabled){color:#fff;border-color:rgba(255,105,35,.4);background:#1a1c24;transform:translateY(-1px)}
+.chance-btn.active{color:#fff;border-color:rgba(255,100,30,.75);background:linear-gradient(135deg,rgba(225,70,15,.8),rgba(255,110,30,.55));box-shadow:0 0 14px rgba(255,75,15,.18),inset 0 0 10px rgba(255,255,255,.04)}
+.chance-btn:active{transform:scale(.96)}
+
+/* Ввод ставки */
+.virtual-input-box{margin-top:10px}
+.virtual-input-box label{display:block;margin-bottom:7px;color:#777c87;font-size:9px;font-weight:900}
+.virtual-input-box input{width:100%;height:43px;padding:0 13px;color:#fff;background:#0e1016;border:1px solid rgba(255,255,255,.08);border-radius:9px;outline:none;font-size:13px;font-weight:800}
+.virtual-input-box input:focus{border-color:rgba(255,90,20,.6)}
+.virtual-input-box input::-webkit-inner-spin-button,.virtual-input-box input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.virtual-input-box input[type=number]{-moz-appearance:textfield}
+.cash-input{display:flex;align-items:center;gap:8px;height:43px;padding:0 10px;background:#0e1016;border:1px solid rgba(255,255,255,.08);border-radius:9px}
+.cash-input:focus-within{border-color:rgba(255,90,20,.6)}
+.cash-input>span{color:#ff6b25;font-weight:900;font-size:13px}
+.cash-input input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#fff;font-size:13px;font-weight:800}
+.cash-input input::-webkit-inner-spin-button,.cash-input input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.cash-input input[type=number]{-moz-appearance:textfield}
+.cash-input button{padding:6px 9px;border:1px solid rgba(255,105,35,.35);border-radius:6px;background:rgba(255,90,20,.1);color:#ff9b57;font-size:9px;font-weight:900;cursor:pointer}
+.field-help{display:block;margin-top:7px;color:#626874;font-size:9px;line-height:1.45}
+.inventory-source-info,.target-info{margin-top:12px;padding:11px 12px;border:1px solid rgba(255,255,255,.07);border-radius:10px;background:#0e1016}
+.inventory-source-info span,.target-info span{display:block;color:#777c87;font-size:8px;font-weight:900;letter-spacing:1.2px}
+.inventory-source-info b,.target-info strong{display:block;margin-top:6px;color:#ff8a40;font-size:11px;line-height:1.45}
+.inventory-source-info small,.target-info small{display:block;margin-top:5px;color:#68707b;font-size:9px;line-height:1.45}
+.odds-note{margin-top:9px;color:#626874;font-size:9px;line-height:1.45}
+
+/* Кнопка улучшения */
+.upgrade-center{text-align:center;min-width:0}
+.multiplier{color:#ff6b20;font-size:29px;font-weight:950}
+.chance{margin-top:5px;color:#777c87;font-size:10px;font-weight:800}
+.upgrade-button{width:100%;height:49px;display:flex;align-items:center;justify-content:center;gap:9px;margin-top:15px;border:0;border-radius:10px;cursor:pointer;color:#fff;background:linear-gradient(135deg,#e84b13,#ff761f);box-shadow:0 8px 25px rgba(255,75,10,.2);font-size:10px;font-weight:950;transition:.2s}
+.upgrade-button:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,75,10,.3)}
+.upgrade-button:active{transform:translateY(0)}
+.upgrade-button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.upgrade-arrow{font-size:17px}
+
+/* Статистика */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px}
+.stat{padding:16px;text-align:center;background:rgba(17,19,26,.7);border:1px solid rgba(255,255,255,.06);border-radius:11px}
+.stat span{display:block;color:#606570;font-size:8px;font-weight:900;letter-spacing:1px}
+.stat strong{display:block;margin-top:7px;font-size:16px}
+
+/* Окно результата */
+.result{position:fixed;inset:0;z-index:80;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;background:rgba(4,5,8,.88);backdrop-filter:blur(12px);text-align:center}
+.result-icon{font-size:85px;animation:resultPop .45s ease}
+.result-title{margin-top:12px;font-size:35px;font-weight:950;letter-spacing:4px;color:#fff;text-shadow:0 0 25px rgba(255,255,255,.08)}
+.result-text{margin-top:8px;color:#858b97;font-size:13px;display:flex;flex-direction:column;gap:8px;align-items:center;line-height:1.4}
+.result-text strong{color:#fff}
+.result-win-amount{color:#39df86;font-size:17px;font-weight:950}
+.result-loss-amount{color:#ff5252;font-size:17px;font-weight:950}
+.result button{margin-top:25px;padding:13px 27px;border:0;border-radius:9px;color:#fff;background:#e95118;cursor:pointer;font-size:10px;font-weight:900}
+.result.hidden{display:none!important}
+@keyframes resultPop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+
+/* Модальные окна */
+.modal{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center}
+.modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(7px)}
+.modal-window{position:relative;z-index:1;width:min(620px,calc(100% - 30px));max-height:80vh;overflow:auto;padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:15px;background:#11131a;box-shadow:0 30px 100px rgba(0,0,0,.6)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.modal-header h2{font-size:12px;font-weight:950;letter-spacing:1px}
+.modal-header button{width:31px;height:31px;border:1px solid rgba(255,255,255,.07);border-radius:8px;background:#171a22;color:#858b95;cursor:pointer;font-size:21px;line-height:1}
+.modal-items{display:grid;gap:8px}
+.modal-item{width:100%;display:flex;align-items:center;padding:11px;border:1px solid rgba(255,255,255,.06);border-radius:10px;background:#161922;cursor:pointer;transition:.15s;font-family:Arial,Helvetica,sans-serif;color:#fff;text-align:left}
+.modal-item:hover:not(:disabled){background:#1c1f29;border-color:rgba(255,100,25,.35)}
+.modal-item:disabled{opacity:.35;cursor:not-allowed}
+.modal-item-icon{width:45px;height:45px;flex:0 0 45px;display:flex;align-items:center;justify-content:center;background:#20232d;border-radius:9px;font-size:22px;overflow:hidden}
+.modal-item-info{margin-left:12px;text-align:left;min-width:0}
+.modal-item-name{display:block;color:#fff;font-size:12px;font-weight:900}
+.modal-item-price{display:block;margin-top:5px;color:#ff6b20;font-size:11px;font-weight:800}
+.modal-section-title{margin:12px 2px 7px;color:#777c87;font-size:8px;font-weight:900;letter-spacing:1.2px}
+.target-money-box{padding:12px;margin-bottom:10px;border:1px solid rgba(255,255,255,.07);border-radius:11px;background:#0e1016}
+.target-money-title{margin-bottom:8px;color:#777c87;font-size:9px;font-weight:900;letter-spacing:1.2px}
+.target-money-row{display:flex;gap:8px}
+.target-money-input-wrap{min-width:0;flex:1;height:43px;display:flex;align-items:center;padding:0 12px;border:1px solid rgba(255,255,255,.08);border-radius:9px;background:#080a0f}
+.target-money-input-wrap span{margin-right:6px;color:#777c87}
+.target-money-input-wrap input{width:100%;border:0;outline:0;background:transparent;color:#fff;font-size:13px;font-weight:800}
+.target-money-input-wrap input::-webkit-inner-spin-button,.target-money-input-wrap input::-webkit-outer-spin-button{-webkit-appearance:none}
+#targetVirtualApply{width:90px;border:0;border-radius:9px;background:#e95118;color:#fff;font-size:9px;font-weight:900}
+
+/* Пополнение и вывод */
+.account-modal{width:min(560px,calc(100% - 30px))}
+.method-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.method-button{height:42px;border:1px solid rgba(255,255,255,.07);border-radius:9px;background:#161922;color:#858b96;cursor:pointer;font-size:9px;font-weight:900}
+.method-button.active,.method-button:hover{color:#fff;border-color:rgba(255,100,25,.55);background:rgba(255,85,20,.12)}
+.deposit-panel{padding:14px;border:1px solid rgba(255,255,255,.07);border-radius:11px;background:#0e1016}
+.deposit-label,.withdraw-form label{display:block;margin-bottom:7px;color:#777c87;font-size:9px;font-weight:900;letter-spacing:1px}
+.deposit-input,.withdraw-form input,.withdraw-form select{width:100%;height:43px;padding:0 12px;border:1px solid rgba(255,255,255,.08);border-radius:9px;outline:0;background:#080a0f;color:#fff;font-size:12px;font-weight:800}
+.deposit-input:focus,.withdraw-form input:focus,.withdraw-form select:focus{border-color:rgba(255,90,20,.6)}
+.modal-action-button{width:100%;height:43px;margin-top:12px;border:0;border-radius:9px;background:#e95118;color:#fff;cursor:pointer;font-size:9px;font-weight:950}
+.available-balance{padding:10px 12px;margin-bottom:12px;border:1px solid rgba(255,255,255,.06);border-radius:9px;background:#0e1016;color:#777c87;font-size:10px}
+.available-balance strong{color:#ff6b20}
+.withdraw-form{display:grid;gap:7px}
+.withdraw-form label:not(:first-child){margin-top:4px}
+.withdraw-form select option{background:#11131a;color:#fff}
+.accessory-search{margin-bottom:9px}
+.accessory-list{display:grid;gap:7px;max-height:260px;overflow:auto}
+.accessory-item{display:flex;align-items:center;padding:9px;border:1px solid rgba(255,255,255,.06);border-radius:9px;background:#161922;cursor:pointer}
+.accessory-item.selected{border-color:rgba(255,100,25,.7);background:rgba(255,85,20,.08)}
+.accessory-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#20232d;font-size:21px;overflow:hidden}
+.accessory-info{margin-left:10px}
+.accessory-name{font-size:11px;font-weight:900}
+.accessory-price{margin-top:4px;color:#ff6b20;font-size:10px;font-weight:800}
+.selected-accessory{margin-top:9px;color:#777c87;font-size:9px}
+.selected-accessory strong{color:#fff}
+
+/* Уведомления */
+.toast{position:fixed;left:50%;bottom:28px;z-index:100;transform:translateX(-50%);padding:12px 17px;border:1px solid rgba(255,100,25,.35);border-radius:10px;background:rgba(17,19,26,.96);box-shadow:0 15px 40px rgba(0,0,0,.45);color:#fff;font-size:11px;font-weight:800;max-width:calc(100% - 28px)}
+.toast.show{display:block!important;animation:toastIn .25s ease}
+.toast.error{border-color:rgba(255,60,60,.45)}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+
+/* Прокрутка: только победа и поражение */
+.roll-screen{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;background:rgba(4,5,8,.91);backdrop-filter:blur(12px)}
+.roll-box{width:min(920px,calc(100% - 30px));text-align:center}
+.roll-title{margin-bottom:20px;color:#fff;font-size:18px;font-weight:950;letter-spacing:4px}
+.roll-window{position:relative;width:100%;height:148px;overflow:hidden;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:#0b0d12;box-shadow:0 20px 70px rgba(0,0,0,.5)}
+.roll-window:before,.roll-window:after{content:"";position:absolute;top:0;bottom:0;width:100px;z-index:3;pointer-events:none}
+.roll-window:before{left:0;background:linear-gradient(90deg,#0b0d12,transparent)}
+.roll-window:after{right:0;background:linear-gradient(270deg,#0b0d12,transparent)}
+.roll-track{height:100%;display:flex;align-items:center;gap:8px;will-change:transform;transform:translateX(0)}
+.roll-card{width:156px;height:108px;flex:0 0 156px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.07);border-radius:10px;background:linear-gradient(145deg,#151821,#101219);box-shadow:inset 0 0 18px rgba(255,255,255,.015)}
+.roll-card-icon{font-size:36px;line-height:1}
+.roll-card-text{margin-top:8px;color:#fff;font-size:9px;font-weight:950;letter-spacing:1px}
+.roll-center{position:absolute;left:50%;top:0;bottom:0;width:2px;z-index:5;transform:translateX(-1px);background:#ff2b3d;box-shadow:0 0 14px rgba(255,35,55,.9)}
+.roll-line{width:140px;height:3px;margin:18px auto 0;background:#e10619;box-shadow:0 0 16px rgba(225,6,25,.55)}
+.roll-card.roll-win{border-color:rgba(57,223,134,.5)}
+.roll-card.roll-loss{border-color:rgba(255,82,82,.4)}
+.roll-final{box-shadow:0 0 20px rgba(255,75,20,.22)}
+
+/* Хэллоуинские листья */
+.falling-leaves{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.leaf{position:absolute;top:-40px;animation:leafFall linear infinite;filter:drop-shadow(0 2px 4px rgba(0,0,0,.35))}
+@keyframes leafFall{
+  0%{transform:translate3d(0,-40px,0) rotate(0deg)}
+  25%{transform:translate3d(35px,28vh,0) rotate(90deg)}
+  50%{transform:translate3d(-25px,55vh,0) rotate(190deg)}
+  75%{transform:translate3d(30px,78vh,0) rotate(270deg)}
+  100%{transform:translate3d(-15px,110vh,0) rotate(360deg)}
+}
+
+/* Инвентарь и магазин */
+.lower-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.5fr);gap:14px;margin-top:16px;align-items:start}
+.lower-panel{min-width:0;padding:17px;background:rgba(17,19,26,.82);border:1px solid rgba(255,255,255,.07);border-radius:15px;box-shadow:0 15px 45px rgba(0,0,0,.2)}
+.lower-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.lower-title-wrap{display:flex;align-items:center;gap:10px;min-width:0}
+.lower-icon{width:37px;height:37px;flex:0 0 37px;display:grid;place-items:center;border-radius:10px;background:#191b23;font-size:17px}
+.inventory-icon{color:#ff9048;border:1px solid rgba(255,120,40,.16)}
+.catalog-icon{color:#d1a2ff;border:1px solid rgba(177,120,255,.16)}
+.section-kicker{display:block;margin-bottom:4px;color:#656c78;font-size:8px;font-weight:900;letter-spacing:1.4px}
+.lower-panel h2{color:#fff;font-size:12px;font-weight:950;letter-spacing:.8px}
+.count-pill{display:inline-flex;min-width:19px;height:18px;align-items:center;justify-content:center;margin-left:4px;padding:0 5px;border:1px solid rgba(255,100,30,.3);border-radius:6px;background:rgba(255,90,20,.09);color:#ff9655;font-size:9px;vertical-align:1px}
+.search-input{width:145px;max-width:45%;height:34px;padding:0 10px;border:1px solid rgba(255,255,255,.08);border-radius:8px;outline:0;background:#0c0e13;color:#fff;font-size:10px}
+.search-input:focus{border-color:rgba(255,90,20,.55)}
+.search-input::placeholder{color:#555c68}
+.category-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.filter-chip{padding:8px 10px;border:1px solid rgba(255,255,255,.07);border-radius:8px;background:#14161d;color:#8a909c;font-size:9px;font-weight:900;cursor:pointer;transition:.15s}
+.filter-chip:hover,.filter-chip.active{border-color:rgba(255,100,30,.45);background:rgba(255,80,15,.1);color:#ffad70}
+.inventory-grid,.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:8px;align-content:start}
+.catalog-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+.inventory-card,.catalog-card{overflow:hidden;min-width:0;border:1px solid rgba(255,255,255,.07);border-radius:10px;background:#13151c;transition:transform .15s,border-color .15s,background .15s}
+.inventory-card:hover,.catalog-card:hover{transform:translateY(-2px);border-color:rgba(255,105,35,.35);background:#171922}
+.inventory-card.selected,.catalog-card.target-selected{border-color:rgba(255,130,50,.8);box-shadow:0 0 18px rgba(255,90,20,.08)}
+.card-image{height:85px;position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 20%,rgba(255,105,25,.12),transparent 65%),#1a1d26;color:#ff9854;font-size:29px}
+.card-category-icon,.card-quantity{position:absolute;top:6px;padding:4px 5px;border:1px solid rgba(255,255,255,.08);border-radius:5px;background:rgba(7,8,12,.83);color:#9da3ae;font-size:7px;font-weight:900;letter-spacing:.5px;z-index:2}
+.card-category-icon{left:6px}
+.card-quantity{right:6px;color:#ffab71}
+.card-info{padding:9px 9px 7px}
+.card-info h3{min-height:27px;font-size:10px;font-weight:900;line-height:1.35;overflow-wrap:anywhere;color:#f4f5f7}
+.card-price{margin-top:5px;color:#ff8740;font-size:10px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-actions{display:flex;gap:5px;padding:0 8px 8px;flex-wrap:wrap}
+.mini-action{flex:1;min-width:0;padding:7px 4px;border:1px solid rgba(255,255,255,.08);border-radius:6px;background:#1b1e27;color:#d5d8df;font-size:8px;font-weight:900;cursor:pointer;transition:.15s}
+.mini-action:hover:not(:disabled){border-color:rgba(255,105,35,.5);background:rgba(255,85,20,.1);color:#ffae79}
+.mini-action:disabled{opacity:.35;cursor:not-allowed}
+.mini-action.primary{border-color:rgba(255,100,30,.27);background:rgba(255,75,15,.1);color:#ff9e60}
+.mini-action.sell{color:#71dca4}
+
+/* Кнопка загрузки фото */
+.image-upload-action{flex:0 0 auto;padding:7px 7px;border-color:rgba(255,100,30,.27);background:rgba(255,75,15,.1);color:#ff9e60;white-space:nowrap}
+.image-upload-action:hover:not(:disabled){border-color:rgba(255,105,35,.5);background:rgba(255,85,20,.1);color:#ffae79}
+.card-actions .image-upload-action{padding-left:7px;padding-right:7px}
+.uploaded-item-image{display:block;width:100%;height:100%;object-fit:cover}
+.card-image .uploaded-item-image{position:absolute;inset:0}
+.selected-icon.has-item-image,.modal-item-icon.has-item-image,.accessory-icon.has-item-image{padding:0;overflow:hidden}
+.selected-icon .uploaded-item-image,.modal-item-icon .uploaded-item-image,.accessory-icon .uploaded-item-image{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.card-image .uploaded-item-image{border-radius:inherit}
+.empty-state{display:flex;min-height:122px;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px dashed rgba(255,255,255,.08);border-radius:10px;color:#626875;text-align:center}
+.empty-state span{font-size:21px;color:#ff8740}
+.empty-state b{color:#9ca2ad;font-size:10px}
+.empty-state small{font-size:9px}
+.catalog-footnote{display:flex;gap:7px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.055);color:#68707b;font-size:9px;line-height:1.45}
+.catalog-footnote span{color:#ff9b55}
+
+/* Дополнительные элементы продажи аксессуаров */
+.inventory-deposit-list{display:grid;gap:7px;max-height:260px;overflow:auto}
+.inventory-deposit-row{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid rgba(255,255,255,.07);border-radius:8px;background:#161922}
+.inventory-deposit-row .item-emoji{font-size:22px}
+.inventory-deposit-row .item-text{flex:1;min-width:0}
+.inventory-deposit-row b,.inventory-deposit-row small{display:block}
+.inventory-deposit-row b{font-size:10px}
+.inventory-deposit-row small{margin-top:4px;color:#ff8d46;font-size:9px;font-weight:900}
+.deposit-sell-button{padding:7px 9px;border:1px solid rgba(255,100,30,.32);border-radius:6px;background:rgba(255,90,20,.1);color:#ffa46b;font-size:8px;font-weight:900;cursor:pointer}
+
+/* Адаптация под планшеты и телефоны */
+@media(max-width:850px){
+  .header{padding:0 20px}
+  .type-selector{grid-template-columns:repeat(2,1fr)}
+  .type:last-child{grid-column:auto}
+  .upgrader{grid-template-columns:1fr}
+  .upgrade-center{order:2}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .header-right{gap:6px}
+  .account-actions{gap:5px}
+  .account-button{padding:8px 10px;min-width:132px}
+  .account-button-title{font-size:8px}
+  .account-button-value{font-size:8px}
+  .roll-card{width:130px;flex-basis:130px}
+  .roll-window{height:135px}
+  .lower-layout{grid-template-columns:1fr}
+  .lower-panel{padding:14px}
+}
+@media(max-width:500px){
+  .container{width:calc(100% - 20px);padding-top:30px}
+  .title-block h1{font-size:31px}
+  .header{height:auto;min-height:65px;padding:10px}
+  .logo-title{font-size:14px}
+  .online{padding:8px}
+  .type{min-height:62px;padding:8px}
+  .type span:last-child{font-size:10px}
+  .upgrader{padding:15px}
+  .chance-buttons{gap:5px}
+  .chance-btn{height:32px;font-size:9px}
+  .header-right{max-width:75%;flex-wrap:wrap;justify-content:flex-end}
+  .account-actions{max-width:100%}
+  .account-button{padding:7px 8px;min-width:112px}
+  .account-button-value{display:none}
+  .online{padding:7px;font-size:9px}
+  .roll-card{width:112px;flex-basis:112px;height:96px}
+  .roll-window{height:120px}
+  .roll-card-icon{font-size:29px}
+  .roll-title{font-size:14px;letter-spacing:2px}
+  .method-buttons{grid-template-columns:1fr}
+  .account-modal{max-height:80vh}
+  .lower-panel-heading{align-items:flex-start;flex-wrap:wrap}
+  .search-input{max-width:100%;width:100%}
+  .inventory-grid,.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .card-image{height:92px}
+  .lower-panel{padding:11px}
+  .filter-chip{padding:7px 8px}
+  .cash-input input{font-size:12px}
+  .card-actions{gap:4px}
+  .mini-action{padding:7px 3px;font-size:7px}
+  .image-upload-action{font-size:7px;padding:7px 4px}
+  .lower-panel-heading{align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
