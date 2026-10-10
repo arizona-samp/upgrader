@@ -1,1 +1,279 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090d">
+  <title>Arizona Upgrader</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background"></div>
+  <div class="falling-leaves" id="fallingLeaves"></div>
+
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">🎃</div>
+      <div>
+        <div class="logo-title">ARIZONA</div>
+        <div class="logo-subtitle">UPGRADER</div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="account-actions">
+        <button type="button" class="account-button deposit-button" id="depositButton">
+          <span class="account-button-title">ПОПОЛНЕНИЕ СЧЁТА</span>
+          <span class="account-button-value">Баланс: <strong id="balanceValue">10 000 000 ₽</strong></span>
+        </button>
+
+        <button type="button" class="account-button withdraw-button" id="withdrawButton">
+          <span class="account-button-title">ВЫВОД</span>
+          <span class="account-button-value">Вывести баланс</span>
+        </button>
+      </div>
+
+      <div class="online">
+        <span class="online-dot"></span>
+        <span>ONLINE</span>
+        <strong id="online">245</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="title-block">
+      <h1>UPGRADER</h1>
+      <p>Попробуй улучшить свой предмет</p>
+    </div>
+
+    <div class="type-selector" role="group" aria-label="Тип ставки">
+      <button type="button" class="type active" data-type="cash">
+        <span class="type-icon">₽</span>
+        <span><small>ТИП СТАВКИ</small>Наличные</span>
+      </button>
+
+      <button type="button" class="type" data-type="inventory">
+        <span class="type-icon">🎒</span>
+        <span><small>ТИП СТАВКИ</small>Предмет из инвентаря</span>
+      </button>
+    </div>
+
+    <section class="upgrader">
+      <div class="upgrade-side">
+        <div class="side-title">
+          <span>ВАША СТАВКА</span>
+          <button type="button" id="sourceButton" class="change-btn">ИЗМЕНИТЬ</button>
+        </div>
+
+        <div class="selected-card" id="sourceCard" tabindex="0" role="button" aria-label="Изменить ставку">
+          <div class="selected-icon" id="sourceIcon">₽</div>
+          <div class="selected-info">
+            <div class="selected-name" id="sourceName">Наличные</div>
+            <div class="selected-price" id="sourcePrice">1 000 000 ₽</div>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+
+        <div class="chance-selector">
+          <div class="chance-selector-title">ШАНС АПГРЕЙДА · НАЛИЧНЫЕ</div>
+          <div class="chance-buttons">
+            <button type="button" class="chance-btn" data-chance="5">5%</button>
+            <button type="button" class="chance-btn" data-chance="15">15%</button>
+            <button type="button" class="chance-btn" data-chance="35">35%</button>
+            <button type="button" class="chance-btn active" data-chance="50">50%</button>
+            <button type="button" class="chance-btn" data-chance="75">75%</button>
+          </div>
+        </div>
+
+        <div class="virtual-input-box" id="virtualBox">
+          <label for="virtualAmount">СУММА СТАВКИ</label>
+          <div class="cash-input">
+            <span>₽</span>
+            <input type="number" id="virtualAmount" min="1" step="1" value="1000000" placeholder="Введите сумму">
+            <button type="button" id="maxBalanceButton">MAX</button>
+          </div>
+          <small class="field-help" id="sourceHelp">Ставка списывается с баланса сразу после запуска.</small>
+        </div>
+
+        <div class="inventory-source-info hidden" id="inventorySourceInfo">
+          <span>СТАВКА ИЗ ИНВЕНТАРЯ</span>
+          <b id="inventorySourceName">Выбери предмет</b>
+          <small>При проигрыше предмет сгорит.</small>
+        </div>
+      </div>
+
+      <div class="upgrade-center">
+        <div class="multiplier" id="multiplier">×2.00</div>
+        <div class="chance" id="chance">Шанс 50.00%</div>
+        <button type="button" class="upgrade-button" id="upgradeButton">
+          <span>УЛУЧШИТЬ</span>
+          <span class="upgrade-arrow">→</span>
+        </button>
+        <div class="odds-note" id="oddsNote">Реальный шанс совпадает с отображаемым.</div>
+      </div>
+
+      <div class="upgrade-side">
+        <div class="side-title">
+          <span>ЦЕЛЬ</span>
+          <button type="button" id="targetButton" class="change-btn">ИЗМЕНИТЬ</button>
+        </div>
+
+        <div class="selected-card" id="targetCard" tabindex="0" role="button" aria-label="Изменить цель">
+          <div class="selected-icon" id="targetIcon">₽</div>
+          <div class="selected-info">
+            <div class="selected-name" id="targetName">Наличные</div>
+            <div class="selected-price" id="targetPrice">2 000 000 ₽</div>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+
+        <div class="target-info">
+          <span>ВЫИГРЫШ ПРИ УСПЕХЕ</span>
+          <strong id="targetModeLabel">Зачисление на баланс</strong>
+          <small id="targetInfoHint">Выбери процент или предмет в магазине.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="lower-layout">
+      <section class="lower-panel inventory-panel" id="inventorySection">
+        <div class="lower-panel-heading">
+          <div class="lower-title-wrap">
+            <span class="lower-icon inventory-icon">▣</span>
+            <div>
+              <span class="section-kicker">YOUR COLLECTION</span>
+              <h2>ИНВЕНТАРЬ <span class="count-pill" id="inventoryCount">0</span></h2>
+            </div>
+          </div>
+          <input class="search-input" id="inventorySearch" type="search" placeholder="Поиск в инвентаре…" aria-label="Поиск в инвентаре">
+        </div>
+        <div class="inventory-grid" id="inventoryGrid"></div>
+        <div class="empty-state" id="inventoryEmpty">
+          <span>▣</span>
+          <b>Инвентарь пуст</b>
+          <small>Выигранные призы появятся здесь.</small>
+        </div>
+      </section>
+
+      <section class="lower-panel catalog-panel" id="catalogSection">
+        <div class="lower-panel-heading">
+          <div class="lower-title-wrap">
+            <span class="lower-icon catalog-icon">⌘</span>
+            <div>
+              <span class="section-kicker">THE PRIZE GARAGE</span>
+              <h2>МАГАЗИН <span class="count-pill" id="catalogCount">0</span></h2>
+            </div>
+          </div>
+          <input class="search-input" id="catalogSearch" type="search" placeholder="Поиск в магазине…" aria-label="Поиск в магазине">
+        </div>
+
+        <div class="category-filters" id="categoryFilters" role="group" aria-label="Категории магазина">
+          <button type="button" class="filter-chip active" data-category-filter="all">Все</button>
+          <button type="button" class="filter-chip" data-category-filter="vehicle">Машины</button>
+          <button type="button" class="filter-chip" data-category-filter="resource">Ресурсы</button>
+          <button type="button" class="filter-chip" data-category-filter="business">Бизнесы</button>
+          <button type="button" class="filter-chip" data-category-filter="accessory">Аксессуары</button>
+        </div>
+
+        <div class="catalog-grid" id="catalogGrid"></div>
+        <div class="empty-state hidden" id="catalogEmpty">
+          <span>⌘</span>
+          <b>Пока нет товаров</b>
+          <small>Попробуй другую категорию или запрос.</small>
+        </div>
+        <div class="catalog-footnote">
+          <span>✦</span>
+          Нажми «Выбрать приз», чтобы играть на конкретную вещь. Шанс будет рассчитан по её стоимости.
+        </div>
+      </section>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><span>ПОПЫТОК</span><strong id="attempts">0</strong></div>
+      <div class="stat"><span>ВЫИГРЫШЕЙ</span><strong id="wins">0</strong></div>
+      <div class="stat"><span>ПРОИГРЫШЕЙ</span><strong id="losses">0</strong></div>
+      <div class="stat"><span>WINRATE</span><strong id="winrate">0%</strong></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-text">Создатель Vladislav_Lyashov | Игра возможна только с сервера Love/Vice-City 🕸️</div>
+    <div class="footer-logo">🎃 ARIZONA UPGRADER</div>
+  </footer>
+
+  <div class="modal hidden" id="selectionModal" aria-hidden="true">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-window">
+      <div class="modal-header">
+        <h2 id="modalTitle">Выберите предмет</h2>
+        <button type="button" id="modalClose" aria-label="Закрыть">×</button>
+      </div>
+      <div class="modal-items" id="modalList"></div>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="depositModal" aria-hidden="true">
+    <div class="modal-overlay" id="depositOverlay"></div>
+    <div class="modal-window account-modal">
+      <div class="modal-header">
+        <h2>Пополнение баланса</h2>
+        <button type="button" id="depositClose" aria-label="Закрыть">×</button>
+      </div>
+      <div class="method-buttons">
+        <button type="button" class="method-button active" data-method="accessories">Продать аксессуар</button>
+        <button type="button" class="method-button" data-method="virtual">Виртуальная валюта</button>
+      </div>
+      <div id="depositContent"></div>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="withdrawModal" aria-hidden="true">
+    <div class="modal-overlay" id="withdrawOverlay"></div>
+    <div class="modal-window account-modal withdraw-modal">
+      <div class="modal-header">
+        <h2>Вывод средств</h2>
+        <button type="button" id="withdrawClose" aria-label="Закрыть">×</button>
+      </div>
+      <div class="available-balance">Доступно: <strong id="withdrawBalance">0 ₽</strong></div>
+      <div class="withdraw-form">
+        <label for="withdrawNick">NickName:</label>
+        <input id="withdrawNick" type="text" placeholder="Введите NickName">
+        <label for="withdrawAmount">Сумма вывода:</label>
+        <input id="withdrawAmount" type="number" min="1" placeholder="Введите сумму">
+        <label for="withdrawServer">Сервер:</label>
+        <select id="withdrawServer">
+          <option value="">Выберите сервер</option>
+          <option value="Love">Love</option>
+          <option value="Vice-City">Vice-City</option>
+        </select>
+        <button type="button" class="modal-action-button" id="withdrawSubmit">ВЫВЕСТИ</button>
+        <small class="field-help">Демо-форма: заявка не отправляется на сервер.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="roll-screen hidden" id="rollScreen">
+    <div class="roll-box">
+      <div class="roll-title">ПРОВЕРКА УДАЧИ</div>
+      <div class="roll-window">
+        <div class="roll-track" id="rollTrack"></div>
+        <div class="roll-center"></div>
+      </div>
+      <div class="roll-line"></div>
+    </div>
+  </div>
+
+  <div class="result hidden" id="result">
+    <div class="result-icon" id="resultIcon">🎃</div>
+    <div class="result-title" id="resultTitle">ВЫИГРЫШ</div>
+    <div class="result-text" id="resultText">Поздравляем!</div>
+    <button type="button" id="closeResult">ПРОДОЛЖИТЬ</button>
+  </div>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
+
